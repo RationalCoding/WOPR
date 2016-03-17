@@ -69,7 +69,6 @@ function state_ask_side() {
 
 //Plays a move to the board
 function playMove(r, c) {
-    console.log(r + "," + c);
     if (board[r][c] == "&#9634;") {
         if (turn == 0) {
             board[r][c] = playerCharacter;
@@ -77,14 +76,17 @@ function playMove(r, c) {
         } else if (turn == 1) {
             board[r][c] = oppCharacter;
             turn = 0;
-        }
 
-        clearReadout();
+        }
         updateBoard();
     }
 
     var winner = testGameOver();
     if (winner == "NONE"){
+        if (turn == 0){
+            clearReadout();
+            readout("IT IS YOUR TURN.");
+        }
     	return;    
     }else {
     	if (oppCharacter == winner){
@@ -136,12 +138,19 @@ function testGameOver() {
         }
     }
 
+    var foundEmpty = false;
+    for (var r = 0; r < 3; r++) {
+        for (var c = 0; c < 3; c++) {
+            if (board[r][c] == "&#9634;"){
+                foundEmpty = true;
+            }
+        }
+    }
+
+    if (!foundEmpty) return "TIE";
+
     return "NONE";
 }
-
-//----Computer vs computer---
-
-
 
 
 
@@ -155,7 +164,7 @@ function state_start_single() {
         playerCharacter = "X";
         oppCharacter = "O";
         clearReadout();
-        readout("%%YOU GO FIRST.", -1);
+        readout("YOU GO FIRST.", -1);
         $("#tictac").show();
         if (turn == 1) decideMove();
     } else if (userIN.toUpperCase() === "O") {
@@ -164,7 +173,7 @@ function state_start_single() {
         playerCharacter = "O";
         oppCharacter = "X";
         clearReadout();
-        readout("%%I GO FIRST.", -1);
+        readout("I GO FIRST.", -1);
         $("#tictac").show();
         if (turn == 1) decideMove();
     } else {
@@ -186,12 +195,6 @@ function decideMove() {
     }
 }
 
-//-----2Player-------
-
-
-
-
-
 
 
 //Game over state
@@ -211,8 +214,6 @@ function state_game_over(iWin) {
         ["&#9634;", "&#9634;", "&#9634;"]
     ];
     updateBoard();
-    turn = 0;
-    readout("%%%YOU GO FIRST.");
 }
 
 
@@ -235,7 +236,8 @@ $(document).ready(function() {
 
     //Add click listeners
     $("#tictac span").mouseup(function() {
-        if (turn == 0 || numPlayers == 2) {
+        console.log(turn);
+        if (turn == 0) {
             var coord = $(this).attr('id').split('');
             playMove(coord[0], coord[1]);
             decideMove();
