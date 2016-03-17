@@ -147,14 +147,12 @@ function testGameOver() {
     for (var r = 0; r < 3; r++) {
         for (var c = 0; c < 3; c++) {
             if (board[r][c] == "&#9634;"){
-                foundEmpty = true;
+                return "NONE";
             }
         }
     }
 
-    if (!foundEmpty) return "TIE";
-
-    return "NONE";
+   return "TIE";
 }
 
 
