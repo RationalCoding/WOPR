@@ -90,9 +90,14 @@ function playMove(r, c) {
     	return;    
     }else {
     	if (oppCharacter == winner){
-			state_game_over(true);
+			state_game_over(0);
     	}else{
-			state_game_over(false);
+            if (winner == "TIE"){
+                state_game_over(1);
+            }else{
+                state_game_over(2);
+            }
+			
     	}
     }
 }
@@ -203,13 +208,16 @@ playMove(pos[indexR][0],pos[indexR][1]);
 //Game over state
 function state_game_over(iWin) {
 	clearReadout();
-	if (iWin){
+	if (iWin == 0){
 		playVoice("excellent.wav",1);
 		readout("I WIN. PLAYING AGAIN.");
-	}else{
+	}else if (iWin == 1){
 		playVoice("not_to_play.wav",1);
-		readout("YOU WIN. PLAYING AGAIN.");
-	}
+		readout("TIE. PLAYING AGAIN.");
+	}else{
+        playVoice("fine.wav",1);
+        readout("YOU WIN. PLAYING AGAIN.");
+    }
     
     board = [
         ["&#9634;", "&#9634;", "&#9634;"],
