@@ -84,8 +84,12 @@ function playMove(r, c) {
     var winner = testGameOver();
     if (winner == "NONE"){
         if (turn == 0){
-            clearReadout();
-            readout("IT IS YOUR TURN.");
+            if (!keepWinMessage){
+                clearReadout();
+                readout("IT IS YOUR TURN.",-1);
+            }else{
+                keepWinMessage = false;
+            }
         }
     	return;    
     }else {
@@ -204,17 +208,19 @@ playMove(pos[indexR][0],pos[indexR][1]);
 
 
 //Game over state
+var keepWinMessage = false;
 function state_game_over(iWin) {
 	clearReadout();
+    keepWinMessage = true;
 	if (iWin == 0){
 		playVoice("excellent.wav",1);
-		readout("I WIN. PLAYING AGAIN.");
+		readout("I WIN. PLAYING AGAIN.",-1);
 	}else if (iWin == 1){
 		playVoice("not_to_play.wav",1);
-		readout("TIE. PLAYING AGAIN.");
+		readout("TIE. PLAYING AGAIN.",-1);
 	}else{
         playVoice("fine.wav",1);
-        readout("YOU WIN. PLAYING AGAIN.");
+        readout("YOU WIN. PLAYING AGAIN.",-1);
     }
     
     board = [
