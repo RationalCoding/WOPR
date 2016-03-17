@@ -183,16 +183,19 @@ function state_start_single() {
 
 //Decides the optimal move
 function decideMove() {
-    if (difficulty == 0) {
+    var pos = [];
+
         for (var r = 0; r < 3; r++) {
             for (var c = 0; c < 3; c++) {
                 if (board[r][c] == "&#9634;") {
-                    playMove(r, c);
-                    return;
+                    pos.push([r, c]);
                 }
             }
         }
-    }
+
+var indexR = Math.floor(Math.random()*pos.length);
+playMove(pos[indexR][0],pos[indexR][1]);
+    
 }
 
 
@@ -230,7 +233,6 @@ var oppCharacter = "O";
 var turn = 0;
 var numPlayers = 1;
 var allowClick = false;
-var difficulty = 0;
 
 $(document).ready(function() {
 
