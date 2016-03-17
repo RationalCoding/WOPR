@@ -13,7 +13,7 @@ function readout(message, index) {
             readout(message, index + 1);
         }, 50);
 
-        if (readoutSound.paused || readoutSound.ended) {
+        if (readoutSound.paused) {
             readoutSound.play();
         }
     } else {
@@ -114,7 +114,7 @@ function updateBoard() {
 
 //Cals advance when user presses enter
 function waitForEnter(advance) {
-    window.onkeydown = function(e) {
+    window.onkeyup = function(e) {
         var key = e.keyCode ? e.keyCode : e.which;
 
         if (key == 13) {
@@ -229,6 +229,7 @@ function state_game_over(iWin) {
 
 
 var readoutSound = new Audio('sounds/readout2.mp3');
+readoutSound.loop = true;
 readoutSound.volume = .1;
 
 var board = [
