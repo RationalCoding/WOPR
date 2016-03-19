@@ -42,6 +42,13 @@ function state_greetings() {
 }
 
 function state_play_ask() {
+    var userIN = $("#readin").val();
+    if (userIN.toUpperCase().indexOf("GLOBAL") != -1 && userIN.toUpperCase().indexOf("THERMONUCLEAR") != -1 && userIN.toUpperCase().indexOf("WAR") != -1){
+        playVoice("chess.wav",.3);
+        clearReadout();
+        readout("WOULDN'T YOU PREFER A NICE GAME OF CHESS?", -1);
+        window.open('https://www.youtube.com/watch?v=zsTRxXvQY0s');
+    }
     playVoice("play_game.wav",.2)
     clearReadout();
     readout("SHALL WE PLAY A GAME? Y/N", -1);
@@ -55,7 +62,12 @@ function state_choose_game() {
         clearReadout();
         readout("FINE.%%%-----CONNECTION TERMINATED-----", -1);
         waitForEnter(function() {});
-    } else {
+    } else if (userIN.toUpperCase().indexOf("GLOBAL") != -1 && userIN.toUpperCase().indexOf("THERMONUCLEAR") != -1 && userIN.toUpperCase().indexOf("WAR") != -1){
+        playVoice("chess.wav",.3);
+        clearReadout();
+        readout("WOULDN'T YOU PREFER A NICE GAME OF CHESS?", -1);
+        window.open('https://www.youtube.com/watch?v=zsTRxXvQY0s');
+    }else{
         state_ask_side();
     }
 }
@@ -116,7 +128,7 @@ function updateBoard() {
     }
 }
 
-//Cals advance when user presses enter
+//Calls advance when user presses enter
 function waitForEnter(advance) {
     window.onkeyup = function(e) {
         var key = e.keyCode ? e.keyCode : e.which;
