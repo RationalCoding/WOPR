@@ -48,11 +48,14 @@ function state_play_ask() {
         clearReadout();
         readout("WOULDN'T YOU PREFER A NICE GAME OF CHESS?", -1);
         window.open('https://www.youtube.com/tv#/watch?v=gz3F-02FwZc&resume');
+        waitForEnter(state_play_ask);
+    }else{
+        playVoice("play_game.wav",.2)
+        clearReadout();
+        readout("SHALL WE PLAY A GAME? Y/N", -1);
+        waitForEnter(state_choose_game);
     }
-    playVoice("play_game.wav",.2)
-    clearReadout();
-    readout("SHALL WE PLAY A GAME? Y/N", -1);
-    waitForEnter(state_choose_game);
+    
 }
 
 function state_choose_game() {
