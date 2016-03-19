@@ -185,8 +185,6 @@ function state_start_single() {
         playVoice("excellent.wav",.3);
         playerCharacter = "X";
         oppCharacter = "O";
-        clearReadout();
-        readout("YOU GO FIRST.", -1);
         $("#tictac").show();
         if (turn == 1) decideMove();
     } else if (userIN.toUpperCase() === "O") {
@@ -194,8 +192,6 @@ function state_start_single() {
         playVoice("excellent.wav",.3);
         playerCharacter = "O";
         oppCharacter = "X";
-        clearReadout();
-        readout("I GO FIRST.", -1);
         $("#tictac").show();
         if (turn == 1) decideMove();
     } else {
