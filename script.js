@@ -47,7 +47,7 @@ function state_play_ask() {
         playVoice("chess.wav",.3);
         clearReadout();
         readout("WOULDN'T YOU PREFER A NICE GAME OF CHESS?", -1);
-        window.open('https://www.youtube.com/watch?v=zsTRxXvQY0s');
+        window.open('https://www.youtube.com/tv#/watch?v=gz3F-02FwZc&resume');
     }
     playVoice("play_game.wav",.2)
     clearReadout();
@@ -66,7 +66,7 @@ function state_choose_game() {
         playVoice("chess.wav",.3);
         clearReadout();
         readout("WOULDN'T YOU PREFER A NICE GAME OF CHESS?", -1);
-        window.open('https://www.youtube.com/watch?v=zsTRxXvQY0s');
+        window.open('https://www.youtube.com/tv#/watch?v=gz3F-02FwZc&resume');
     }else{
         state_ask_side();
     }
