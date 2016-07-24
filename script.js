@@ -18,7 +18,9 @@ function readout(message, index) {
         }
     } else {
         $("#readin-wrapper").show();
-        $("#readin").focus();
+	if (!killAudio){
+        	$("#readin").focus();
+	}
         readoutSound.pause();
     }
 }
