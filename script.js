@@ -281,6 +281,11 @@ var numPlayers = 1;
 var allowClick = false;
 
 $(document).ready(function () {
+    $("body").on('click', function(){
+        $("#readin").focus();
+    });
+    $("#readin").focus();
+    
 
     //Add click listeners
     $("#tictac span").mouseup(function () {
