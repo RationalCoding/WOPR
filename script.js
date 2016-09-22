@@ -284,7 +284,9 @@ $(document).ready(function () {
     $("body").on('click', function(){
         $("#readin").focus();
     });
-    $("#readin").focus();
+    if (!killAudio){
+        $("#readin").focus();
+    }
     
 
     //Add click listeners
